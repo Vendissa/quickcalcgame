@@ -54,10 +54,14 @@ const GameBoard = () => {
     }, [isRunning, timer, hasClaimedBonus]); 
 
     const handleInputChange = (row, col, value) => {
+         // Allow only numbers (no letters or special characters)
+        if (/^\d*$/.test(value)){
         const newGrid = userGrid.map((r, rIndex) =>
             r.map((c, cIndex) => (rIndex === row && cIndex === col ? value : c))
         );
+    
         setUserGrid(newGrid);
+    }
     };
 
     const askForBonusTime = () => {
