@@ -1,0 +1,59 @@
+.game-board-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .game-grid {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: fit-content;
+  }
+  
+  .game-grid td {  
+    border: 2px solid black; /* Makes sure all cells have a visible border */
+    text-align: center;
+    width: 50px; /* Ensures consistent width */
+    height: 50px; /* Ensures consistent height */
+    font-size: 18px;
+    
+  }
+  
+  .game-grid .header {
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+  
+  .game-grid .symbol {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #ddd;
+  }
+  
+  .game-grid input {
+    width: 100%; /* Makes input expand fully inside td */
+    height: 100%; /* Ensures the input fills the cell */
+    border: none; /* Removes default input border */
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent
+  }
+
+  .game-grid input:focus {
+    outline: none; /* Removes focus border to keep grid clean */
+  }
+  
+  .submit-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #218838;
+  }
+  

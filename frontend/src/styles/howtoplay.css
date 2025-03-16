@@ -1,0 +1,44 @@
+/* howToPlay.css */
+.how-to-play-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+  
+  .how-to-play-container h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .how-to-play-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .instructions {
+    margin-top: 20px;
+  }
+  
+  .instructions h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .instructions ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .instructions li {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  strong {
+    color: #007bff;
+  }
+  
