@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import "../styles/App.css";
+import "../styles/levelselect.css";
 
 const GameLevels = () => {
     // Difficulty levels data
@@ -12,7 +12,9 @@ const GameLevels = () => {
   
     return (
       <div className="game-levels-container">
-        <h2>Select Your Difficulty</h2>
+        <h1>Select Your Difficulty</h1>
+        <br />
+        <br />
         <div className="levels-grid">
           {levels.map((level, index) => (
             <div key={index} className="level-card">
@@ -30,9 +32,4 @@ const GameLevels = () => {
       </div>
     );
   };
-  /*<Link to={`/game/${level.name.toLowerCase()}`}>
-  <button className={`level-button ${level.name.toLowerCase()}`}>
-    {level.buttonText}
-  </button>
-</Link>*/
   export default GameLevels;

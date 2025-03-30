@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import "../styles/App.css";
+import "../styles/navbar.css";
 import axios from "axios";
 
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
   const senduser = async () => {
     if (user) {
       try {
-        const response = await axios.post("http://localhost:5000/logout", {
+        const response = await axios.post("http://localhost:5000/auth/logout", {
           userId: user, 
         });
         console.log(response.data.message);
@@ -46,19 +46,6 @@ const Navbar = () => {
     }
   };
 
-  /*if (userId) {
-    try {
-        const response = await axios.post("http://localhost:5000/update-highscore", {
-            userId,
-            newScore,
-        });
-
-        console.log(response.data.message);
-    } catch (error) {
-        console.error("Error updating high score:", error);
-    }
-}*/
-
   return (
     <nav className="navbar">
       <Link to="/" className="logotext">
@@ -67,7 +54,6 @@ const Navbar = () => {
       <div className="nav-links">
         <Link to="/howToPlay">How to Play</Link>
         <Link to="/leaderboard">Leader Board</Link>
-        
         {/* Only show logout button when logged in */}
         {isLoggedIn && (
           <button onClick={handleLogout} className="logout-btn">

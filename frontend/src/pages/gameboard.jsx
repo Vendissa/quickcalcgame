@@ -130,7 +130,7 @@ const GameBoard = () => {
     
         if (userId) {
             try {
-                const response = await axios.post("http://localhost:5000/update-highscore", {
+                const response = await axios.post("http://localhost:5000/game/update-highscore", {
                     userId,
                     newScore,
                 });
@@ -146,64 +146,75 @@ const GameBoard = () => {
 
     return (
         <div className="game-board-container">
-            <h2>{level.charAt(0).toUpperCase() + level.slice(1)} Mode</h2>
+        <h2>{level.charAt(0).toUpperCase() + level.slice(1)} Mode</h2>
 
-            {isRunning ? (
-                <p>Time left: {timer} seconds</p>
-            ) : (
-                <button className="start-btn" onClick={() => setIsRunning(true)}>
-                    Start Game
-                </button>
-            )}
+        {isRunning ? (
+            <p>Time left: {timer} seconds</p>
+        ) : (<button 
+        className="start-btn" onClick={() => setIsRunning(true)}>
+      Start Game
+    </button>
+  )}
 
-            <table className="game-grid">
-                <tbody>
-                    {Array(size + 1).fill().map((_, row) => (
-                        <tr key={row}>
-                            {Array(size + 1).fill().map((_, col) => {
-                                if (row === 0 && col === 0) return <td key={`${row}-${col}`} className="symbol">✖</td>;
-                                if (row === 0) return <td key={`${row}-${col}`} className="header">{rowValues[col - 1]}</td>;
-                                if (col === 0) return <td key={`${row}-${col}`} className="header">{colValues[row - 1]}</td>;
-                                return (
-                                    <td key={`${row}-${col}`}>
-                                        <input
-                                            type="text"
-                                            value={userGrid[row - 1][col - 1]}
-                                            onChange={(e) => handleInputChange(row - 1, col - 1, e.target.value)}
-                                            disabled={!isRunning || isBonusChallengeActive}
-                                        />
-                                    </td>
-                                );
-                            })}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <button
-                className="submit-btn"
-                onClick={handleSubmit || isBonusChallengeActive}
-                disabled={!isRunning || isBonusChallengeActive}
-            >
-                Done
-            </button>
-
-            {showBonusChallenge && (
-                <div className="bonus-time-container">
-                    <h3>Solve this to earn more time:</h3>
-                    <img src={bonusQuestion.question} alt="Bonus Challenge" className="bonus-image" />
-                    <input
+  <div className="game-content">
+    {/* Game Grid */}
+    <table className="game-grid">
+      <tbody>
+        {Array(size + 1)
+          .fill()
+          .map((_, row) => (
+            <tr key={row}>
+              {Array(size + 1)
+                .fill()
+                .map((_, col) => {
+                  if (row === 0 && col === 0) return <td key={`${row}-${col}`} className="symbol">✖</td>;
+                  if (row === 0) return <td key={`${row}-${col}`} className="header">{rowValues[col - 1]}</td>;
+                  if (col === 0) return <td key={`${row}-${col}`} className="header">{colValues[row - 1]}</td>;
+                  return (
+                    <td key={`${row}-${col}`}>
+                      <input
                         type="text"
-                        placeholder="Enter your answer"
-                        value={bonusAnswer}
-                        onChange={(e) => setBonusAnswer(e.target.value)}
-                    />
-                    <button onClick={submitBonusAnswer} className="bonus-submit">
-                        Submit Answer
-                    </button>
-                </div>
-            )}
-        </div>
+                        value={userGrid[row - 1][col - 1]}
+                        onChange={(e) => handleInputChange(row - 1, col - 1, e.target.value)}
+                        disabled={!isRunning || isBonusChallengeActive}
+                      />
+                    </td>
+                  );
+                })}
+            </tr>
+          ))}
+      </tbody>
+    </table>
+
+    {/* Bonus Challenge */}
+    {showBonusChallenge && (
+      <div className="bonus-time-container">
+        <h3>Solve this to earn more time:</h3>
+        <img src={bonusQuestion.question} alt="Bonus Challenge" className="bonus-image" />
+        <br />
+        <input
+          type="text"
+          placeholder="Enter your answer"
+          value={bonusAnswer}
+          onChange={(e) => setBonusAnswer(e.target.value)}
+        />
+        <br />
+        <button onClick={submitBonusAnswer} className="bonus-submit">
+          Submit Answer
+        </button>
+      </div>
+    )}
+  </div>
+
+  <button
+    className="submit-btn"
+    onClick={isBonusChallengeActive ? submitBonusAnswer : handleSubmit}
+    disabled={!isRunning || isBonusChallengeActive}
+  >
+    Done
+  </button>
+</div>
+
     );
 };
 

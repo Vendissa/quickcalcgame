@@ -1,10 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const axios = require("axios");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const UserModel = require("./models/User");
+const authRoutes = require("./routes/authRoutes");
+const gameRoutes = require("./routes/gameRoutes");
 
 
 const app = express();
@@ -17,6 +15,16 @@ app.use(express.json()); // For parsing JSON requests
 
 mongoose.connect("mongodb://localhost:27017/Users");
 
+// Routes
+app.use("/auth", authRoutes); // Auth routes are now prefixed with /auth
+app.use("/game", gameRoutes); // Game routes are now prefixed with /game
+
+// Start Server
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+/*
 const SECRET_KEY = "your_secret_key"; 
 
 // Register Route
@@ -147,3 +155,4 @@ app.get("/leaderboard", async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Proxy server running on http://localhost:${PORT}`);
 });
+*/

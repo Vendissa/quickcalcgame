@@ -3,6 +3,57 @@
     padding: 20px;
   }
   
+  .game-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensures content wraps on smaller screens */
+  }
+  
+.game-board-container p {
+  font-size: 1.5rem;
+  color: #ff5733; /* Red color for the timer */
+  font-weight: bold;
+}
+
+.bonus-image {
+  max-width: 500px;
+  align-content: center;
+  height: auto;
+  margin: 20px 0;
+  object-fit: cover;
+}
+
+.bonus-time-container {
+  background-color: #e0f19f;
+  display: inline-table;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin-top: 0px;
+}
+.bonus-time-container input {
+
+  align-self: center;
+  
+}
+
+.bonus-submit {
+  background-color: #007bff;
+  color: white;
+  padding: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.bonus-submit:hover {
+  background-color: #0056b3;
+}
   .game-grid {
     border-collapse: collapse;
     margin: 20px auto;
@@ -10,12 +61,13 @@
   }
   
   .game-grid td {  
-    border: 2px solid black; /* Makes sure all cells have a visible border */
+    padding: 10px;
+    border: 2px solid black; 
     text-align: center;
-    width: 50px; /* Ensures consistent width */
-    height: 50px; /* Ensures consistent height */
+    width: 50px; 
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 40px; 
     font-size: 18px;
-    
   }
   
   .game-grid .header {
