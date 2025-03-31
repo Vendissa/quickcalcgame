@@ -17,6 +17,7 @@ const Leaderboard = () => {
     };
 
     fetchLeaderboard();
+    triggerConfetti();  // Trigger confetti when the leaderboard is loaded
   }, []);
 
   const triggerConfetti = () => {
@@ -44,16 +45,16 @@ const Leaderboard = () => {
       case 0:
         return "🥇";
       case 1:
-        return "🥈"; 
+        return "🥈";
       case 2:
-        return "🥉"; 
+        return "🥉";
       default:
         return "";
     }
   };
 
   return (
-    <div className="leaderboard-container" onClick={triggerConfetti}>
+    <div className="leaderboard-container">
       <h2>Leaderboard</h2>
       <table className="leaderboard-table">
         <thead>
@@ -71,7 +72,7 @@ const Leaderboard = () => {
           ) : (
             leaderboard.map((player, index) => (
               <tr key={index}>
-                 <td>
+                <td>
                   {getMedal(index)} {index + 1}
                 </td>
                 <td>{player.name}</td>
