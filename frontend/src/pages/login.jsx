@@ -31,7 +31,8 @@ const Login = () => {
         // Save token in localStorage (for authentication)
         localStorage.setItem("userId", response.data.user._id);
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        const userData = response.data.user;
+        localStorage.setItem("user", JSON.stringify(userData));
         
         window.dispatchEvent(new Event("storage"));
 
