@@ -43,8 +43,18 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: "1h" });
         user.token = token;
         await user.save();
-
-        res.json({ message: "Login successful", token, user });
+        
+        res.json({ 
+            message: "Login successful", 
+            token, 
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                highScore: user.highScore,
+                avatar: user.avatar,
+            } 
+        });
     } catch (error) {
         console.error("Error logging in:", error);
         res.status(500).json({ error: "Internal server error" });
